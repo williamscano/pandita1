@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<title></title>
+	<style>
+		 .container {
+            width: 100vw; /* Ocupa el 100% del ancho de la ventana */
+            height: 100vh; /* Ocupa el 100% del alto de la ventana */
+            border: 1px solid #ccc;
+            overflow: hidden; /* Evita el desbordamiento */
+    </style>
+</head>
+<body>
+	<button class="cargarFile"><-- Cargar File --></button>
+	<button class="cargarPdf"><-- Cargar PDF --></button>
+	<button class="cargarHtml"><-- Cargar HTML --></button>
+	<button class="cargarImg"><-- Cargar Imagen --></button>
+	<button class="cargarSeccion"><-- Cargar Sección --></button>
+
+		<h3></h3>
+	<div class="container"></div>
+<script>
+	function cargarFile(){
+	$(".container").load("HelloWord.html");
+	}
+
+	$(".cargarFile").click(cargarFile);
+
+function cargarHtml(){
+	$(".container").load("indexformulariopract.html");
+	}
+
+	$(".cargarHtml").click(cargarHtml);
+
+  function cargarPdf() {
+            // Ruta al archivo PDF
+            const pdfUrl = "files/ofertadetreball.pdf"; // Cambia esto por la ruta correcta
+            // Crear un embed para mostrar el PDF
+			const embed = `<embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">`;
+            // Insertar el embed en el contenedor
+            $(".container").html(embed);
+        }
+
+        // Asignar el evento click al botón
+        $(".cargarPdf").click(cargarPdf);
+
+  function cargarImg() {
+            // Ruta al archivo IMG
+           	const img = `<img src="image/panda3.jpg" alt="Imagen" width=100%>`;
+            // Insertar el embed en el contenedor
+            $(".container").html(img);
+        }
+
+		$(".cargarImg").click(cargarImg);
+
+
+
+		// Cargar solo una sección
+        $(".cargarSeccion").click(function() {
+            $(".container").load("HelloWord.html #video", function(response, status) {
+                if (status === "error") {
+                    $(".container").html("<p>No se pudo cargar la sección.</p>");
+                }
+            });
+        });
+    </script>
+</script>
+
+
+
+</body>
+</html>

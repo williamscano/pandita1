@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Cargar Archivos Locales</title>
+    <style>
+        .container {
+            width: 100vw; /* Ocupa el 100% del ancho de la ventana */
+            height: 100vh; /* Ocupa el 100% del alto de la ventana */
+            border: 1px solid #ccc;
+            overflow: auto; /* Permite el desplazamiento si el contenido es grande */
+        }
+        embed, iframe, img {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="cargarFile">Cargar File</button>
+    <button class="cargarPdf">Cargar PDF</button>
+    <button class="cargarHtml">Cargar HTML</button>
+    <button class="cargarImg">Cargar Imagen</button>
+    <button class="cargarSeccion">Cargar Sección</button>
+    <h3></h3>
+    <div class="container"></div>
+
+    <script>
+        // Función para cargar un archivo HTML
+        function cargarFile() {
+            $(".container").load("index.html", function(response, status) {
+                if (status === "error") {
+                    $(".container").html("<p>Error al cargar el archivo HTML.</p>");
+                }
+            });
+        }
+
+        // Función para cargar otro archivo HTML
+        function cargarHtml() {
+            $(".container").load("indexformulariopract.html", function(response, status) {
+                if (status === "error") {
+                    $(".container").html("<p>Error al cargar el archivo HTML.</p>");
+                }
+            });
+        }
+
+        // Función para cargar un archivo PDF
+        function cargarPdf() {
+            const pdfUrl = "files/ofertadetreball.pdf"; // Cambia esto por la ruta correcta
+            const embed = `<embed src="${pdfUrl}" type="application/pdf" width="100%" height="100%">`;
+            $(".container").html(embed);
+        }
+
+        // Función para cargar una imagen
+        function cargarImg() {
+            const imgUrl = "image/panda3.jpg"; // Cambia esto por la ruta correcta
+            const img = `<img src="${imgUrl}" alt="Imagen" width="100%">`;
+            $(".container").html(img);
+        }
+
+        // Función para cargar una sección específica de un archivo HTML
+        function cargarSeccion() {
+            $(".container").load("index.html #contactos", function(response, status) {
+                if (status === "error") {
+                    $(".container").html("<p>Error al cargar la sección.</p>");
+                }
+            });
+        }
+
+        // Asignar eventos a los botones
+        $(".cargarFile").click(cargarFile);
+        $(".cargarHtml").click(cargarHtml);
+        $(".cargarPdf").click(cargarPdf);
+        $(".cargarImg").click(cargarImg);
+        $(".cargarSeccion").click(cargarSeccion);
+    </script>
+</body>
+</html>
